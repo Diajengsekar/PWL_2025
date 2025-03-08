@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data User</title>
+    <style>
+        table {
+            width: 200px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>Data User</h1>
-
-    <table border="1" cellpadding="2" cellspacing="0">
+    <table>
         <tr>
-            <td>ID</td>
-            <td>Username</td>
-            <td>Nama</td>
-            <td>ID Level Pengguna</td>
+            <th>Jumlah Pengguna</th>
         </tr>
         <tr>
-            <td>{{ $data->user_id }}</td>
-            <td>{{ $data->username }}</td>
-            <td>{{ $data->nama }}</td>
-            <td>{{ $data->level_id }}</td>
+            <td>{{ $jumlahUser }}</td>
         </tr>
     </table>
 </body>
