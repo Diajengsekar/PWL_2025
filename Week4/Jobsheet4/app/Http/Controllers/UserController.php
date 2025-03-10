@@ -20,8 +20,8 @@ class UserController extends Controller
                 'level_id' => 2
             ]
         );
-        $user-> save();
-
+        $user->save();
+        
         return view('user', ['data' => $user]);
     }
 }
