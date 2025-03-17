@@ -16,15 +16,19 @@ namespace App\DataTables;
 *	Build the DataTable class. 
      * 
 *	@param QueryBuilder $query Results from query() method. 
-     */     public function dataTable(QueryBuilder $query): EloquentDataTable 
-    {        return (new EloquentDataTable($query))
+     */     public function dataTable(QueryBuilder $query): EloquentDataTable
+{
+    return (new EloquentDataTable($query))
         // ->addColumn('action', 'kategori.action')
-        ->addColumn('action', function($id){
+        ->addColumn('action', function ($id) {
             $edit = route('kategori.edit', $id);
-            return '<a href="'.$edit.'" class="btn btn-warning btn-sm">Edit</a>';
+            $delete = route('kategori.delete', $id);
+            return 
+                '<a href="' . $edit . '" class="btn btn-warning btn-sm">Edit</a>' .
+                '<a href="' . $delete . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin ingin menghapus kategori ini?\')">Delete</a>';
         })
         ->setRowId('id');
-    } 
+}
 
     /** 
 *	Get the query source of dataTable. 
@@ -54,26 +58,28 @@ namespace App\DataTables;
 
     /** 
      * Get the dataTable columns definition. 
-     */     public function getColumns(): array 
-    {         return [ 
-    /*         Column::computed('action') 
-                    ->exportable(false) 
-                    ->printable(false) 
-                    ->width(60) 
-                  ->addClass('text-center'), */ 
-            Column::make('kategori_id'), 
-            Column::make('kategori_kode'), 
-            Column::make('kategori_nama'), 
-            Column::make('created_at'), 
-            Column::make('updated_at'), 
+     */     public function getColumns(): array
+        {
+            return [
+                // Column::computed('action')
+                // ->exportable(false)
+                // ->printable(false)
+                // ->width(60)
+                // ->addClass('text-center'),
 
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(100)
-                ->addClass('text-center'),
-        ]; 
-    } 
+                Column::make('kategori_id'),
+                Column::make('kategori_kode'),
+                Column::make('kategori_nama'),
+                Column::make('created_at'),
+                Column::make('updated_at'),
+
+                Column::computed('action')
+                    ->exportable(false)
+                    ->printable(false)
+                    ->width(150)
+                    ->addClass('text-center'),
+            ];
+        }
 
     /** 
      * Get the filename for export. 
