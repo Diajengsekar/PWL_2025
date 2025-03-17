@@ -22,4 +22,16 @@
 
 @push('scripts')
     {{ $dataTable->scripts() }}
+
+    {{-- Tambahkan script untuk kolom Action di DataTables --}}
+    <script>
+        $(document).ready(function () {
+            $('#kategoriTable').on('draw.dt', function () {
+                $('.btn-edit').on('click', function () {
+                    var id = $(this).data('id');
+                    window.location.href = "{{ url('kategori') }}/" + id + "/edit";
+                });
+            });
+        });
+    </script>
 @endpush

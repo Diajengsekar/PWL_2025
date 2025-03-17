@@ -1,7 +1,15 @@
 <?php 
 
 namespace App\DataTables; 
-    use App\Models\KategoriModel; use Illuminate\Database\Eloquent\Builder as QueryBuilder; use Yajra\DataTables\EloquentDataTable; use Yajra\DataTables\Html\Builder as HtmlBuilder; use Yajra\DataTables\Html\Button; use Yajra\DataTables\Html\Column; use Yajra\DataTables\Html\Editor\Editor; use Yajra\DataTables\Html\Editor\Fields; use Yajra\DataTables\Services\DataTable; 
+    use App\Models\KategoriModel; 
+    use Illuminate\Database\Eloquent\Builder as QueryBuilder; 
+    use Yajra\DataTables\EloquentDataTable; 
+    use Yajra\DataTables\Html\Builder as HtmlBuilder; 
+    use Yajra\DataTables\Html\Button; use Yajra\DataTables\Html\Column; 
+    use Yajra\DataTables\Html\Editor\Editor; 
+    use Yajra\DataTables\Html\Editor\Fields; 
+    use Yajra\DataTables\Services\DataTable; 
+    
     class KategoriDataTable extends DataTable 
 { 
     /** 
@@ -9,9 +17,13 @@ namespace App\DataTables;
      * 
 *	@param QueryBuilder $query Results from query() method. 
      */     public function dataTable(QueryBuilder $query): EloquentDataTable 
-    {         return (new EloquentDataTable($query)) 
-/*             ->addColumn('action', 'kategori.action') */ 
-            ->setRowId('id'); 
+    {        return (new EloquentDataTable($query))
+        // ->addColumn('action', 'kategori.action')
+        ->addColumn('action', function($id){
+            $edit = route('kategori.edit', $id);
+            return '<a href="'.$edit.'" class="btn btn-warning btn-sm">Edit</a>';
+        })
+        ->setRowId('id');
     } 
 
     /** 
@@ -54,6 +66,12 @@ namespace App\DataTables;
             Column::make('kategori_nama'), 
             Column::make('created_at'), 
             Column::make('updated_at'), 
+
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(100)
+                ->addClass('text-center'),
         ]; 
     } 
 
