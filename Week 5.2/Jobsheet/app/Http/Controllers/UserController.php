@@ -10,11 +10,11 @@ use Yajra\DataTables\Facades\DataTables;
 class UserController extends Controller
 {
     // Menampilkan halaman awal user
-    public function index()
+        public function index()
     {
         $breadcrumb = (object) [
             'title' => 'Daftar User',
-            'list'  => ['Home', 'User']
+            'list' => ['Home', 'User']
         ];
 
         $page = (object) [
@@ -30,7 +30,6 @@ class UserController extends Controller
             'page' => $page,
             'level' => $level,
             'activeMenu' => $activeMenu
-
         ]);
     }
 
