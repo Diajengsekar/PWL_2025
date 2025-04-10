@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
             // Import User with Excel
             Route::get('import', [UserController::class, 'import']); // ajax form upload excel
             Route::post('import_ajax', [UserController::class, 'import_ajax']); // ajax import excel
-            // Export Barang with Excel
+            // Export User with Excel
             Route::get('export_excel', [UserController::class, 'export_excel']); //export excel
         });
     });
@@ -74,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
             // Import User with Excel
             Route::get('import', [LevelControlller::class, 'import']); // ajax form upload excel
             Route::post('import_ajax', [LevelControlller::class, 'import_ajax']); // ajax import excel
-            // Export Barang with Excel
+            // Export Level with Excel
             Route::get('export_excel', [LevelControlller::class, 'export_excel']); //export excel
         });
     });
@@ -102,7 +102,7 @@ Route::middleware(['auth'])->group(function () {
             // Import Kategori with Excel
             Route::get('import', [KategoriController::class, 'import']); // ajax form upload excel
             Route::post('import_ajax', [KategoriController::class, 'import_ajax']); // ajax import excel
-            // Export Barang with Excel
+            // Export Kategori with Excel
             Route::get('export_excel', [KategoriController::class, 'export_excel']); //export excel
         });
     });
@@ -166,6 +166,8 @@ Route::middleware(['auth'])->group(function () {
              // Import Supplier with Excel
              Route::get('import', [SupplierController::class, 'import']); // ajax form upload excel
              Route::post('import_ajax', [SupplierController::class, 'import_ajax']); // ajax import excel
+            // Export Supplier with Excel
+            Route::get('export_excel', [SupplierController::class, 'export_excel']); //export excel
         });
     });
 });
