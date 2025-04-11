@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Point of Sales') }}</title>
+    <title>{{ config('app.name', 'PWL Laravel Starter Code') }}</title>
 
     <meta name="csrf-token" content="{{ csrf_token()}}"> <!-- Untuk mengirimkan token Laravel CSRF pada setiap request ajax-->
 
@@ -34,7 +34,7 @@
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link">
       <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">PWL - Point of Sales</span>
+      <span class="brand-text font-weight-light">PWL - Starter Code</span>
     </a>
 
     <!-- Sidebar -->
@@ -49,7 +49,7 @@
 
     <!-- Main content -->
     <section class="content">
-     @yield('content')
+      @yield('content')
     </section>
     <!-- /.content -->
   </div>
@@ -79,7 +79,7 @@
 
 <!-- jquery-validation -->
 <script src="{{ asset('adminlte/plugins/jquery-validation/jquery.validate.js')}}"></script>
-<script src="{{ asset('plugins/jquery-validation/additional-methods.min.js')}}"></script>
+<script src="{{ asset('adminlte/plugins/jquery-validation/additional-methods.min.js')}}"></script>
 
 <!-- SweetAlert2 -->
 <script src="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
