@@ -78,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('import_ajax', [LevelControlller::class, 'import_ajax']); // ajax import excel
             // Export Level with Excel
             Route::get('export_excel', [LevelControlller::class, 'export_excel']); //export excel
+            // Export Barang with Pdf
+            Route::get('export_pdf', [LevelControlller::class, 'export_pdf']); //export pdf
         });
     });
 
