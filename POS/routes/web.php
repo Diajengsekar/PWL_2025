@@ -6,6 +6,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\StokController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -219,6 +220,31 @@ Route::middleware(['auth'])->group(function () {
               Route::get('export_excel', [StokController::class, 'export_excel']); //export excel
               // Export Supplier with Pdf
               Route::get('export_pdf', [StokController::class, 'export_pdf']); //export pdf
+        });
+    });
+
+    //semua route di dalam group ini harus punya role ADM (Administrator), MNG (Manager) dan STF (Staff)
+    Route::middleware(['authorize:ADM,MNG,STF'])->group(function(){
+        Route::group(['prefix' => 'penjualan'], function () {
+            Route::get('/', [PenjualanController::class, 'index']);
+            Route::post('/list', [PenjualanController::class, 'list']); // menampilkan data penjualan dalam bentuk json untuk datatables
+            Route::get('{id}/show_ajax', [PenjualanController::class, 'show_ajax']); //menampilkan detil penjualan 
+             // Create menggunakan AJAX
+             Route::get('/create_ajax', [PenjualanController::class, 'create_ajax']); // menampilkan halaman form tambah Penjualan ajax
+             Route::post('/ajax', [PenjualanController::class, 'store_ajax']); // menyimpan data Penjualan baru ajax
+             // Edit menggunakan AJAX
+             Route::get('/{id}/edit_ajax', [PenjualanController::class, 'edit_ajax']); // menampilkan halaman form edit Stok ajax
+             Route::put('/{id}/update_ajax', [PenjualanController::class, 'update_ajax']); // menyimpan perubahan data Stok ajax
+              // Delete menggunakan AJAX
+            Route::get('/{id}/delete_ajax', [PenjualanController::class, 'confirm_ajax']); //menampilkan form confirm delete penjualan ajax
+            Route::delete('/{id}/delete_ajax', [PenjualanController::class, 'delete_ajax']); // menghapus data penjualan ajax
+            // Import Penjualan with Excel
+            Route::get('import', [PenjualanController::class, 'import']); // ajax form upload excel
+            Route::post('import_ajax', [PenjualanController::class, 'import_ajax']); // ajax import excel
+            // Export Penjualan with Excel
+            Route::get('export_excel', [PenjualanController::class, 'export_excel']); //export excel
+            // Export Penjualan with Pdf
+            Route::get('export_pdf', [PenjualanController::class, 'export_pdf']); //export pdf
         });
     });
 });
