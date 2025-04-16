@@ -42,7 +42,7 @@ class SupplierController extends Controller
         return DataTables::of($supplier)
             ->addIndexColumn()
             ->addColumn('aksi', function ($supplier) {
-                // $btn = '<a href="' . url('/supplier/' . $supplier->supplier_id) . '" class="btn btn-info btn-sm">Detail</a> ';
+                //$btn = '<a href="' . url('/supplier/' . $supplier->supplier_id) . '" class="btn btn-info btn-sm">Detail</a> ';
                 // $btn .= '<a href="' . url('/supplier/' . $supplier->supplier_id . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 // $btn .= '<form class="d-inline-block" method="POST" action="' . url('/supplier/' . $supplier->supplier_id) . '">' . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
                 $btn = '<button onclick="modalAction(\'' . url('/supplier/' . $supplier->supplier_id . '/show_ajax') . '\')" class="btn btn-info btn-sm">Detail</button> ';
@@ -125,6 +125,7 @@ class SupplierController extends Controller
         return redirect('/');
     }
 
+    //Menampilkan detail
     public function show(string $id)
     {
         $supplier = SupplierModel::find($id);
@@ -141,6 +142,13 @@ class SupplierController extends Controller
 
         return view('supplier.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'supplier' => $supplier]);
     }
+
+     //Show AJAX
+     public function show_ajax(string $id)
+     {
+         $supplier = SupplierModel::find($id);
+         return view('supplier.show_ajax', ['supplier' => $supplier]);
+     }
 
     public function edit(string $id)
     {
