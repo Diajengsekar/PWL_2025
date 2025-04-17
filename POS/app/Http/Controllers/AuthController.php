@@ -55,7 +55,6 @@ class AuthController extends Controller
     public function register()
     {
         $levels = LevelModel::select('level_id', 'level_nama')->get();
-        
         return view('auth.register')->with('levels', $levels);
     }
 
